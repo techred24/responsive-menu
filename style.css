@@ -1,0 +1,91 @@
+:root{
+    --icon-menu-color: white;
+    --body-color: gray;
+    --width: 30px;
+    --height:5px;
+    --icon-menu-width:40px;
+    --icon-menu-height:var(--icon-menu-width);
+}
+body{
+    /* background-color: var(--body-color); */
+    background-color: white;
+    margin: 0;
+    height: 200vh;
+    padding-top: var(--icon-menu-height);
+}
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+/* LA TOP BAR ABARCA EL 100% DEL .HEADER PORQUE ES ELEMENTO DE BLOQUE */
+.top-bar{
+    background-color: #333;
+}
+.icon-menu{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: var(--icon-menu-width);
+    height:var(--icon-menu-height);
+    cursor: pointer;
+}
+.icon-menu__bar{
+    position: relative;
+    background-color: var(--icon-menu-color);
+    width: var(--width);
+    height: var(--height);
+    border-radius: calc(var(--height) / 2);
+}
+.icon-menu__bar:after, .icon-menu__bar:before{
+    content:'';
+    position: absolute;
+    display: block;
+    background-color: white;
+    width: var(--width);
+    height: var(--height);
+    border-radius: calc(var(--height)/2)
+}
+/* EL CONTENEDOR PADRE DE .icon-menu__bar::before y ::after es el mismo elemento .icon-menu__bar */
+/* Quedan posicionados dentro del mismo elemento padre */
+.icon-menu__bar::before{
+    bottom: 8px;
+}
+.icon-menu__bar:after{
+    top: 8px;
+}
+.menu{
+    /* El padding-left en 0 es porque se le agrega un padding por defecto porque es tag ul, creo */
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    list-style: none;
+    position: absolute;
+    background-color: #333;
+    transition: .3s ease transform;
+    width: 100%;
+    transform: translateX(-100%);
+}
+.menu__link{
+    text-decoration: none;
+    color: white;
+}
+.menu__item{
+    padding: 1em;
+    border-bottom: 1px solid var(--icon-menu-color);
+}
+.active{
+    transform: translateX(0);
+}
+/* 20:40 */
+@media screen and (min-width:768px){
+    .menu{
+        display: flex;
+        justify-content: space-evenly;
+        transform: translateX(0);
+    }
+    .top-bar{
+        display: none;
+    }
+}
